@@ -25,15 +25,23 @@ textColumn.addClass("present");
 else if (i > time){
 textColumn.addClass("future");
 }
+// Local Storage to webpage 
+textColumn.val(localStorage.getItem("button" + i));
 // Save Button
 const saveBtn = $("<button>");
 saveBtn.addClass("saveBtn col-md-1");
+saveBtn.text("Save");
+saveBtn.attr("id", "button" + i);
+textColumn.attr("id", "text" + i);
+
+
 // Append section
 $(".container").append(timeSlot);
 timeSlot.append(columnOne);
 timeSlot.append(textColumn);
 timeSlot.append(saveBtn);
 
+// This changes the time to either AM or PM
 if (i < 12){
 columnOne.text(i + "AM");
 }
@@ -44,17 +52,16 @@ else if (i > 12){
 columnOne.text(i - 12 + "PM");
 }
 }
-// <!-- will need form to allow user to input text -->
-    // <!-- Columns to save  --> 
-// Append something
-// Assign css styling by past present future time
+// Click target for the save button/creating variables for key value pair/Saving key value pair
+$(".saveBtn").on("click", function(){
+    const noteValue = $(this).siblings("textarea").val();
+    const buttonId = $(this).attr("id");
+    localStorage.setItem(buttonId, noteValue);
+    
+    
+})
 
-// create save button to store users entry to locale storage
-// localStorage.setItem("name", data(customer's comment))
-// The time block they're entering their appointment into needs to contribute to the "name" of our locale storage item
-// value attribute  of the form or button
-// localeStorage.setItem(timeWindow.value)
-// have whatever info is in localestorage show on the webpage
+
 
 
 
